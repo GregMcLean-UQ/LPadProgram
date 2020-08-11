@@ -3,12 +3,10 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Net.Mail;
 using System.IO;
 using System.Threading;
 using System.ComponentModel;
 using System.Net;
-using System.Net.NetworkInformation;
 using System.Collections.Specialized;
 using Tables;
 
@@ -187,30 +185,30 @@ namespace LLogger
 			}
 		private void bgSMS_DoWork(object sender, DoWorkEventArgs e)
 			{
-			// send an sms
-			string msg = (string)e.Argument;
+			//// send an sms
+			//string msg = (string)e.Argument;
 
-			// get the outbox
-			Microsoft.Office.Interop.Outlook.Application outlookApp = new Microsoft.Office.Interop.Outlook.Application();
-			Microsoft.Office.Interop.Outlook.NameSpace mapiNameSpace = outlookApp.GetNamespace("MAPI");
-			mapiNameSpace.Logon(null, null, true, true);
-			Microsoft.Office.Interop.Outlook.MAPIFolder outboxFolder =
-				mapiNameSpace.GetDefaultFolder(Microsoft.Office.Interop.Outlook.OlDefaultFolders.olFolderOutbox);
+			//// get the outbox
+			//Microsoft.Office.Interop.Outlook.Application outlookApp = new Microsoft.Office.Interop.Outlook.Application();
+			//Microsoft.Office.Interop.Outlook.NameSpace mapiNameSpace = outlookApp.GetNamespace("MAPI");
+			//mapiNameSpace.Logon(null, null, true, true);
+			//Microsoft.Office.Interop.Outlook.MAPIFolder outboxFolder =
+			//	mapiNameSpace.GetDefaultFolder(Microsoft.Office.Interop.Outlook.OlDefaultFolders.olFolderOutbox);
 
-			// create a mail item
-			Microsoft.Office.Interop.Outlook._MailItem mailItem =
-				(Microsoft.Office.Interop.Outlook._MailItem)outlookApp.
-					CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
+			//// create a mail item
+			//Microsoft.Office.Interop.Outlook._MailItem mailItem =
+			//	(Microsoft.Office.Interop.Outlook._MailItem)outlookApp.
+			//		CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
 
-			mailItem.To = smsNumberText.Text + "@sms.smsglobal.com.au";
-			mailItem.Subject = "LYSIMETER ALERT";
-			mailItem.Body = "LYSIMETER ALERT  " + msg + "  " + DateTime.Now.ToString();
+			//mailItem.To = smsNumberText.Text + "@sms.smsglobal.com.au";
+			//mailItem.Subject = "LYSIMETER ALERT";
+			//mailItem.Body = "LYSIMETER ALERT  " + msg + "  " + DateTime.Now.ToString();
 
-			// add to out box
-			mailItem.SaveSentMessageFolder = outboxFolder;
+			//// add to out box
+			//mailItem.SaveSentMessageFolder = outboxFolder;
 
-			//send
-			mailItem.Send();
+			////send
+			//mailItem.Send();
 
 			}
 		private void bgSMS_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
