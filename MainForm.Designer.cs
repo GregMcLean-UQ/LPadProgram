@@ -858,8 +858,8 @@
          // 
          // bgSMS
          // 
-         this.bgSMS.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgSMS_DoWork);
-         this.bgSMS.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgSMS_RunWorkerCompleted);
+         this.bgSMS.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgSMS_DoWork);
+         this.bgSMS.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgSMS_RunWorkerCompleted);
          // 
          // fileWatcher
          // 

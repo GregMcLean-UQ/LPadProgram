@@ -159,7 +159,7 @@ namespace LLogger
                   lines.Add(sr.ReadLine());
 
                fs.Close();
-               loadData(lines);
+               LoadData(lines);
                }
             catch (Exception ex)
                {
@@ -197,7 +197,7 @@ namespace LLogger
                   envListBox.Visible = true;
 
                   allPanel.Visible = false;
-                  if (dataTables != null) drawEnvGraph();
+                  if (dataTables != null) DrawEnvGraph();
                   chart.Width = displayPage.Width;
                   tabControl.TabPages[2].Text = "Environment";
                   }
@@ -211,7 +211,7 @@ namespace LLogger
                   clearDisplay();
                   tabControl.TabPages[2].Text = "Table " + (currTable + 1).ToString();
                   tableLabel.Text = tabControl.TabPages[2].Text;
-                  if (dataTables != null) drawGraph(currTable, -1);
+                  if (dataTables != null) DrawGraph(currTable, -1);
 
                   }
                }
@@ -225,7 +225,7 @@ namespace LLogger
                clearDisplay();
                tabControl.TabPages[2].Text = "Table " + (currTable + 1).ToString() + " Pot " + (currPot + 1).ToString();
                tableLabel.Text = tabControl.TabPages[2].Text;
-               if (dataTables != null) drawGraph(currTable, currPot);
+               if (dataTables != null) DrawGraph(currTable, currPot);
                }
             }
          }
@@ -300,7 +300,7 @@ namespace LLogger
          // test button fot sms
          testList.Items.Clear();
          testList.Items.Add("Sending SMS");
-         sendSMS("Test");
+         SendSMS("Test");
          }
 
       private void deviceTestButton_Click(object sender, EventArgs e)
@@ -512,7 +512,7 @@ namespace LLogger
       private void envListBox_SelectedIndexChanged(object sender, EventArgs e)
          {
          // when a different selection for the environment is made redo the env graph
-         drawEnvGraph();
+         DrawEnvGraph();
          }
 
       public string SanitizeFileName(string fileName)
