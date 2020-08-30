@@ -699,6 +699,59 @@ namespace LLogger
             setStatus();
         }
 
+        private void CutoutTestButton_Click(object sender, EventArgs e)
+        {
+            // Test the cutout system
+            if (lpad.cutoutSerialPort.IsOpen)
+            {
+                lpad.cutoutSerialPort.Close();
+            }
+            else
+            {
+                lpad.cutoutSerialPort.Open();
+            }
+            testList.Items.Add("Cutout Open: " + lpad.cutoutSerialPort.IsOpen);
+        }
+
+        private void WaterTestButton_Click(object sender, EventArgs e)
+        {
+            // For the current table, open each solenoid for 5 seconds
+            testList.Items.Clear();
+            // open Cutout
+            if (lpad.cutoutSerialPort.IsOpen == false)
+            {
+                lpad.cutoutSerialPort.Open();
+            }
+            testList.Items.Add("Cutout Open: " + lpad.cutoutSerialPort.IsOpen);
+            // check rs485.
+            if (lpad.rs485.IsOpen == false)
+            {
+                lpad.rs485.Open();
+            }
+
+            int testTable = Convert.ToInt32(tableComboBox.Text) - 1;
+            int fromPot = 0; int toPot = 7;
+            if(potComboBox.Text != "ALL")
+            {
+                int requiredPot = Convert.ToInt32(potComboBox.Text);
+                fromPot = requiredPot-1;  toPot = requiredPot-1;
+            }
+            for (int pot = fromPot; pot <= toPot; pot++)
+            {
+                lpad.tables[testTable].pots[pot].water();
+                testList.Items.Add("Testing Table " + (testTable + 1).ToString() + " Pot " + (pot + 1).ToString());
+                testList.Refresh();
+                Thread.Sleep(5000);
+                lpad.tables[testTable].pots[pot].stopWatering();
+            }
+            // Close Cutout.
+            if (lpad.cutoutSerialPort.IsOpen == true)
+            {
+                lpad.cutoutSerialPort.Close();
+            }
+            testList.Items.Add("Cutout Open: " + lpad.cutoutSerialPort.IsOpen);
+        }
+
         private void stopWateringAllPots()
         {
             // stop Watering All Pots
