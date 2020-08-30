@@ -623,7 +623,7 @@ namespace LLogger
 
 
                 lpad.active = true;
-                Process.Start(@"\LPAD\Programs\LPadService\bin\Release\LPadService.exe");
+                Process.Start(@"\LPAD\Programs\LPadService\bin\Debug\LPadService.exe");
 
             }
             setStatus();
